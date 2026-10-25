@@ -1,0 +1,901 @@
+{
+  "meta": {
+    "programName": "Nova's 3-Day Dumbbell Program",
+    "version": "1.0.0",
+    "updatedAt": "2026-10-15"
+  },
+  "days": [
+    {
+      "id": "day1",
+      "title": "Day 1 — Push",
+      "focus": "Chest · Shoulders · Triceps",
+      "items": [
+        {
+          "exerciseId": "flat_db_bench",
+          "sets": 4,
+          "target": "6-10",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "incline_db_press",
+          "sets": 3,
+          "target": "8-12",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "standing_ohp",
+          "sets": 3,
+          "target": "8-12",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "lateral_raise",
+          "sets": 3,
+          "target": "12-15",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "oh_triceps_ext",
+          "sets": 3,
+          "target": "10-15",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "hanging_knee_raise",
+          "sets": 3,
+          "target": "12-15",
+          "unit": "reps",
+          "unilateral": null
+        }
+      ]
+    },
+    {
+      "id": "day2",
+      "title": "Day 2 — Pull + Legs",
+      "focus": "Back · Biceps · Legs",
+      "items": [
+        {
+          "exerciseId": "one_arm_row",
+          "sets": 4,
+          "target": "8-12",
+          "unit": "reps",
+          "unilateral": "side"
+        },
+        {
+          "exerciseId": "db_rdl",
+          "sets": 3,
+          "target": "8-12",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "bulgarian_split_squat",
+          "sets": 3,
+          "target": "8-12",
+          "unit": "reps",
+          "unilateral": "leg"
+        },
+        {
+          "exerciseId": "rear_delt_fly",
+          "sets": 3,
+          "target": "12-15",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "bicep_curl",
+          "sets": 3,
+          "target": "10-12",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "hammer_curl",
+          "sets": 2,
+          "target": "10-12",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "plank",
+          "sets": 3,
+          "target": "45-60",
+          "unit": "seconds",
+          "unilateral": null
+        }
+      ]
+    },
+    {
+      "id": "day3",
+      "title": "Day 3 — Shoulders + Arms",
+      "focus": "Delts · Arms · Core",
+      "items": [
+        {
+          "exerciseId": "arnold_press",
+          "sets": 3,
+          "target": "8-12",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "close_grip_press",
+          "sets": 3,
+          "target": "10-12",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "lateral_raise",
+          "sets": 4,
+          "target": "12-15",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "front_raise",
+          "sets": 2,
+          "target": "12",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "hammer_curl",
+          "sets": 3,
+          "target": "10-12",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "oh_triceps_ext",
+          "sets": 3,
+          "target": "10-12",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "prone_y_raise",
+          "sets": 2,
+          "target": "12-15",
+          "unit": "reps",
+          "unilateral": null
+        },
+        {
+          "exerciseId": "russian_twist",
+          "sets": 3,
+          "target": "15",
+          "unit": "reps",
+          "unilateral": "side"
+        }
+      ]
+    }
+  ],
+  "exercises": {
+    "flat_db_bench": {
+      "name": "Flat DB Bench Press",
+      "icon": "ic_flat_db_bench",
+      "primaryMuscles": [
+        "Chest",
+        "Front Delts",
+        "Triceps"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=ufl6HV5NN9g",
+        "embedUrl": "https://www.youtube.com/embed/ufl6HV5NN9g",
+        "channel": "Barbell Logic",
+        "title": "The Dumbbell Bench Press: Gym Shorts (How To)"
+      },
+      "referenceNote": "The foundation chest builder — dumbbells allow a deeper stretch than a barbell and fix left-right imbalances.",
+      "setup": [
+        "Sit on the flat bench with a dumbbell resting on each thigh.",
+        "Kick the weights up with your knees as you lie back.",
+        "Plant feet flat, pinch shoulder blades together with a slight arch.",
+        "Start with dumbbells above your chest, wrists straight."
+      ],
+      "tempo": "2-1-2 — 2 seconds down, 1 second pause on the chest, 2 seconds up.",
+      "dos": [
+        "Keep elbows at roughly 45 degrees to your torso",
+        "Drive your feet into the floor for full-body tension",
+        "Lower until you feel a deep chest stretch",
+        "Keep shoulder blades pinched the whole set"
+      ],
+      "donts": [
+        "Do not flare elbows out to 90 degrees",
+        "Do not bounce the weights off your chest",
+        "Do not clang the dumbbells together at the top",
+        "Do not lift your hips off the bench"
+      ],
+      "mistakes": [
+        "Pressing with elbows flared wide, stressing the shoulders",
+        "Half reps that never reach chest level",
+        "Losing the shoulder-blade pinch mid-set"
+      ],
+      "tip": "Think about bending the dumbbell handles outward as you press — it keeps the chest engaged and elbows in the safe zone."
+    },
+    "incline_db_press": {
+      "name": "Incline DB Press",
+      "icon": "ic_incline_db_press",
+      "primaryMuscles": [
+        "Upper Chest",
+        "Front Delts",
+        "Triceps"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=8xNKkSpxlh8",
+        "embedUrl": "https://www.youtube.com/embed/8xNKkSpxlh8",
+        "channel": "Myprotein",
+        "title": "Incline Dumbbell Bench Press"
+      },
+      "referenceNote": "Targets the upper chest — a 30-degree incline keeps tension on the pecs instead of shifting it to the shoulders.",
+      "setup": [
+        "Set the bench to about 30 degrees — one notch above flat.",
+        "Rest dumbbells on your thighs, kick up and lie back.",
+        "Feet flat, shoulder blades pinched, slight arch.",
+        "Start with dumbbells at upper-chest level."
+      ],
+      "tempo": "2-1-2 — controlled down, brief squeeze, powerful press.",
+      "dos": [
+        "Keep the 30-degree angle — steeper shifts work to shoulders",
+        "Press up and slightly inward in an arc",
+        "Squeeze the chest for a beat at the top",
+        "Control the full stretch at the bottom"
+      ],
+      "donts": [
+        "Do not set the bench past 45 degrees",
+        "Do not let the dumbbells drift outward",
+        "Do not rush the lowering phase",
+        "Do not over-arch your back"
+      ],
+      "mistakes": [
+        "Too steep a bench turning it into a shoulder press",
+        "Cutting range short to lift heavier",
+        "Letting wrists bend back under the load"
+      ],
+      "tip": "Mark your bench's 30-degree notch with tape so setup is instant every session."
+    },
+    "standing_ohp": {
+      "name": "Standing DB Overhead Press",
+      "icon": "ic_standing_ohp",
+      "primaryMuscles": [
+        "Shoulders",
+        "Triceps",
+        "Core"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=yizMbcuwCj4",
+        "embedUrl": "https://www.youtube.com/embed/yizMbcuwCj4",
+        "channel": "White Coat Trainer",
+        "title": "Standing Dumbbell Overhead Press"
+      },
+      "referenceNote": "Builds the front and side delts while your core works overtime to keep you stable.",
+      "setup": [
+        "Stand with feet hip-width apart, dumbbells at shoulder height.",
+        "Brace your core and squeeze your glutes.",
+        "Ribs down — do not lean back.",
+        "Press straight overhead until arms are nearly straight."
+      ],
+      "tempo": "2-1-2 — no bouncing out of the bottom.",
+      "dos": [
+        "Squeeze glutes hard before every rep",
+        "Press the weights in a straight vertical line",
+        "Keep wrists stacked over elbows",
+        "Lower all the way to shoulder height"
+      ],
+      "donts": [
+        "Do not arch your lower back to cheat the weight up",
+        "Do not shrug the weights with your traps",
+        "Do not bang dumbbells together overhead",
+        "Do not hold your breath for the whole set"
+      ],
+      "mistakes": [
+        "Leaning back turns it into an incline chest press",
+        "Using leg drive to bounce the weight up",
+        "Stopping the press at forehead height"
+      ],
+      "tip": "If your lower back complains, do it seated with back support — same delts, less cheating."
+    },
+    "lateral_raise": {
+      "name": "Lateral Raises",
+      "icon": "ic_lateral_raise",
+      "primaryMuscles": [
+        "Side Delts"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=TM6se0vr1VA",
+        "embedUrl": "https://www.youtube.com/embed/TM6se0vr1VA",
+        "channel": "Barbell Logic",
+        "title": "Dumbbell Lateral Raise: Gym Shorts (How To)"
+      },
+      "referenceNote": "The width builder — strict form with light weight beats heavy swinging every time.",
+      "setup": [
+        "Stand tall, dumbbells at your sides, palms facing in.",
+        "Slight bend in the elbows — keep it fixed.",
+        "Lean forward just a touch.",
+        "Raise out to the sides until arms reach shoulder height."
+      ],
+      "tempo": "2-1-3 — slower on the way down.",
+      "dos": [
+        "Lead with your elbows, not your hands",
+        "Stop at shoulder height",
+        "Keep the motion slightly in front of the side plane",
+        "Control the negative for a full 3 seconds"
+      ],
+      "donts": [
+        "Do not swing the weights up with momentum",
+        "Do not shrug your traps toward your ears",
+        "Do not raise above shoulder height",
+        "Do not use a weight you cannot pause with"
+      ],
+      "mistakes": [
+        "Turning it into a full-body heave",
+        "Lifting the arms too far forward (becomes a front raise)",
+        "Dropping the weights instead of lowering them"
+      ],
+      "tip": "Do the last set as a drop set — cut the weight in half and keep going to failure for extra side-delt growth."
+    },
+    "oh_triceps_ext": {
+      "name": "Overhead Triceps Extension",
+      "icon": "ic_oh_triceps_ext",
+      "primaryMuscles": [
+        "Triceps"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=SfAxwNHfMyY",
+        "embedUrl": "https://www.youtube.com/embed/SfAxwNHfMyY",
+        "channel": "Stan Bakh",
+        "title": "Dumbbell Overhead Triceps Extension — proper technique"
+      },
+      "referenceNote": "Stretches the long head of the triceps like nothing else — the key to bigger arms.",
+      "setup": [
+        "Hold one dumbbell with both hands, arms extended overhead.",
+        "Keep upper arms close to your head, elbows pointing up.",
+        "Brace your core, ribs down.",
+        "Lower the weight behind your head by bending only the elbows."
+      ],
+      "tempo": "2-1-2 — pause in the deep stretch.",
+      "dos": [
+        "Keep upper arms perfectly still",
+        "Lower until you feel a deep triceps stretch",
+        "Squeeze hard at the top without harsh lockout",
+        "Use a weight you can control behind your head"
+      ],
+      "donts": [
+        "Do not let elbows flare wide",
+        "Do not arch your back under the load",
+        "Do not cut the range short",
+        "Do not rush — the stretch is the point"
+      ],
+      "mistakes": [
+        "Moving the whole arm instead of just the forearm",
+        "Going too heavy and turning it into a shoulder workout",
+        "Skipping the bottom stretch"
+      ],
+      "tip": "Seated with back support removes all cheating — try it when your lower back wants to join in."
+    },
+    "hanging_knee_raise": {
+      "name": "Hanging Knee/Leg Raises",
+      "icon": "ic_hanging_knee_raise",
+      "primaryMuscles": [
+        "Abs",
+        "Hip Flexors"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=dDd2gMmbWJU",
+        "embedUrl": "https://www.youtube.com/embed/dDd2gMmbWJU",
+        "channel": "Nottingham Physio",
+        "title": "Hanging Knee Raise Tutorial | Lower-Abs + Stability"
+      },
+      "referenceNote": "The king of lower-ab exercises — control the swing and your abs do all the work. No pull-up bar at home? Do lying reverse crunches instead.",
+      "setup": [
+        "Hang from a pull-up bar, hands shoulder-width apart.",
+        "Let your body settle — no swinging.",
+        "Brace your core, ribs down.",
+        "Curl your knees up toward your chest, tilting the pelvis."
+      ],
+      "tempo": "1-1-3 — slow lowering is everything.",
+      "dos": [
+        "Pause briefly at the top of each rep",
+        "Lower slowly for 3 seconds",
+        "Keep the swing completely out of it",
+        "Breathe out as you lift the knees"
+      ],
+      "donts": [
+        "Do not swing to generate momentum",
+        "Do not just lift the knees without curling the pelvis",
+        "Do not drop down fast",
+        "Do not hold your breath"
+      ],
+      "mistakes": [
+        "Kipping the reps up with body swing",
+        "Stopping at 90 degrees without the pelvic curl — that is hip flexors, not abs",
+        "Letting the shoulders shrug up to the ears"
+      ],
+      "tip": "When 15 strict reps get easy, straighten the legs a little more each week toward full leg raises."
+    },
+    "one_arm_row": {
+      "name": "One-Arm DB Row",
+      "icon": "ic_one_arm_row",
+      "primaryMuscles": [
+        "Lats",
+        "Upper Back",
+        "Biceps"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=TaHaD1tx9BI",
+        "embedUrl": "https://www.youtube.com/embed/TaHaD1tx9BI",
+        "channel": "White Coat Trainer",
+        "title": "How To Dumbbell Row Correctly"
+      },
+      "referenceNote": "Builds a thick back one side at a time and exposes strength imbalances.",
+      "setup": [
+        "Place one knee and the same-side hand on the bench.",
+        "Plant the other foot wide, back flat and parallel to the floor.",
+        "Let the dumbbell hang straight down from the shoulder.",
+        "Pull the elbow up and back toward your hip."
+      ],
+      "tempo": "2-1-2 — squeeze the shoulder blade at the top.",
+      "dos": [
+        "Pull toward your hip, not your chest",
+        "Squeeze the shoulder blade at the top",
+        "Keep your torso square — no twisting",
+        "Lower under full control"
+      ],
+      "donts": [
+        "Do not rotate your torso to heave the weight",
+        "Do not shrug the shoulder toward your ear",
+        "Do not let your lower back round",
+        "Do not rush the stretch at the bottom"
+      ],
+      "mistakes": [
+        "Twisting the whole body to lift heavier",
+        "Pulling with the bicep instead of driving the elbow",
+        "Cutting the bottom range short"
+      ],
+      "tip": "Start each set with your weaker side and match reps on the stronger side — imbalances even out fast."
+    },
+    "db_rdl": {
+      "name": "DB Romanian Deadlift",
+      "icon": "ic_db_rdl",
+      "primaryMuscles": [
+        "Hamstrings",
+        "Glutes",
+        "Lower Back"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=aa57T45iFSE",
+        "embedUrl": "https://www.youtube.com/embed/aa57T45iFSE",
+        "channel": "National Academy of Sports Medicine (NASM)",
+        "title": "How to do a Dumbbell Romanian Deadlift | Proper Form & Technique | NASM"
+      },
+      "referenceNote": "A hip hinge, not a squat — the best hamstring and glute builder you can do with dumbbells.",
+      "setup": [
+        "Stand tall, dumbbells in front of your thighs, feet hip-width.",
+        "Soften the knees and lock that slight bend in.",
+        "Push your hips straight back, chest proud.",
+        "Lower along your legs until you feel a deep hamstring stretch."
+      ],
+      "tempo": "3-1-2 — slow hinge down.",
+      "dos": [
+        "Initiate every rep by pushing the hips back",
+        "Keep the dumbbells brushing your legs",
+        "Keep your spine neutral throughout",
+        "Drive the hips forward and squeeze glutes at the top"
+      ],
+      "donts": [
+        "Do not round your lower back to go deeper",
+        "Do not bend the knees more as you descend",
+        "Do not let the weights drift away from your body",
+        "Do not hyperextend at the top"
+      ],
+      "mistakes": [
+        "Squatting the weight down instead of hinging",
+        "Chasing depth past a flat back",
+        "Feeling it all in the lower back — the hinge pattern needs work"
+      ],
+      "tip": "Stand a foot in front of a wall and tap your glutes to it on each rep — instant hinge feedback."
+    },
+    "bulgarian_split_squat": {
+      "name": "Bulgarian Split Squat",
+      "icon": "ic_bulgarian_split_squat",
+      "primaryMuscles": [
+        "Quads",
+        "Glutes"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=AaCqSV2vpn4",
+        "embedUrl": "https://www.youtube.com/embed/AaCqSV2vpn4",
+        "channel": "Dr Donald A Ozello DC, NSCA-CPT",
+        "title": "Dumbbell Split Squats AKA Bulgarian Split Squats and Rear Foot Elevated Split Squat"
+      },
+      "referenceNote": "Brutal, humbling, and brilliant — builds each leg independently with just dumbbells and a bench.",
+      "setup": [
+        "Stand a stride in front of the bench, back to it.",
+        "Rest the top of your rear foot on the bench.",
+        "Dumbbells at your sides, torso upright.",
+        "Lower straight down until your front thigh is parallel."
+      ],
+      "tempo": "2-1-2 — own the bottom position.",
+      "dos": [
+        "Keep your torso upright, chest proud",
+        "Drive through the front heel",
+        "Let the front knee travel naturally over the toes",
+        "Keep 90 percent of the weight on the front leg"
+      ],
+      "donts": [
+        "Do not push off the rear foot",
+        "Do not let the front knee collapse inward",
+        "Do not lean far forward",
+        "Do not short-change the depth"
+      ],
+      "mistakes": [
+        "Standing too close or too far from the bench",
+        "Staying too light because of balance — go heavier once stable",
+        "Bouncing out of the bottom"
+      ],
+      "tip": "Do all sets on one leg before switching — the pump and the focus are both better."
+    },
+    "rear_delt_fly": {
+      "name": "Bent-Over Rear Delt Fly",
+      "icon": "ic_rear_delt_fly",
+      "primaryMuscles": [
+        "Rear Delts",
+        "Upper Back"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=zA-vK74AgEc",
+        "embedUrl": "https://www.youtube.com/embed/zA-vK74AgEc",
+        "channel": "TKOH Performance",
+        "title": "Dumbbell Bent Over Rear Delt Fly"
+      },
+      "referenceNote": "The missing piece for 3D shoulders — direct rear-delt work for posture and balance.",
+      "setup": [
+        "Hinge forward until your torso is near parallel to the floor.",
+        "Let the dumbbells hang under your shoulders, slight elbow bend.",
+        "Brace your core, back flat.",
+        "Raise the weights out to the sides in a wide arc to shoulder height."
+      ],
+      "tempo": "2-1-2 — pause at the top.",
+      "dos": [
+        "Lead with your elbows",
+        "Stop when upper arms reach shoulder height",
+        "Squeeze the shoulder blades at the top",
+        "Use a light weight you can control"
+      ],
+      "donts": [
+        "Do not swing the torso up for momentum",
+        "Do not pull the weights back toward your hips",
+        "Do not shrug your traps",
+        "Do not go heavy — form dies fast here"
+      ],
+      "mistakes": [
+        "Using back muscles by pulling too far back",
+        "Bouncing out of the bottom position",
+        "Letting the lower back round under fatigue"
+      ],
+      "tip": "Do these chest-supported (face down on an incline bench) when you want zero cheating."
+    },
+    "bicep_curl": {
+      "name": "DB Bicep Curls",
+      "icon": "ic_bicep_curl",
+      "primaryMuscles": [
+        "Biceps"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=XE_pHwbst04",
+        "embedUrl": "https://www.youtube.com/embed/XE_pHwbst04",
+        "channel": "Fit Father Project - Fitness For Busy Fathers",
+        "title": "Bicep Curls — (DUMBBELL FORM & TECHNIQUE)"
+      },
+      "referenceNote": "Simple, but only effective when the ego stays out of it — strict curls build strict peaks.",
+      "setup": [
+        "Stand tall, dumbbells at your sides, palms forward.",
+        "Pin your elbows to your ribs.",
+        "Brace your core.",
+        "Curl the weights toward your shoulders."
+      ],
+      "tempo": "2-1-3 — the lowering builds the muscle.",
+      "dos": [
+        "Keep upper arms completely still",
+        "Squeeze hard at the top",
+        "Lower for a full 3 seconds",
+        "Keep wrists straight"
+      ],
+      "donts": [
+        "Do not swing the weights up",
+        "Do not let elbows drift forward",
+        "Do not lean back",
+        "Do not drop the weights"
+      ],
+      "mistakes": [
+        "Turning every set into a full-body swing",
+        "Half reps that skip the bottom stretch",
+        "Letting the shoulders do the lifting"
+      ],
+      "tip": "Face a wall with your back and elbows lightly touching it — instant strict-curl feedback."
+    },
+    "hammer_curl": {
+      "name": "Hammer Curls",
+      "icon": "ic_hammer_curl",
+      "primaryMuscles": [
+        "Biceps",
+        "Brachialis",
+        "Forearms"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=TwD-YGVP4Bk",
+        "embedUrl": "https://www.youtube.com/embed/TwD-YGVP4Bk",
+        "channel": "Howcast",
+        "title": "How to Do a Hammer Curl | Arm Workout"
+      },
+      "referenceNote": "Thickens the arms from the side — hits the brachialis and forearms that regular curls miss.",
+      "setup": [
+        "Stand tall, dumbbells at your sides, palms facing your thighs.",
+        "Elbows pinned to your ribs.",
+        "Brace your core.",
+        "Curl straight up without rotating the wrists."
+      ],
+      "tempo": "2-1-2 — controlled both ways.",
+      "dos": [
+        "Keep the neutral grip the whole rep",
+        "Keep elbows locked to your sides",
+        "Squeeze at the top",
+        "Lower under control"
+      ],
+      "donts": [
+        "Do not rotate into a regular curl mid-rep",
+        "Do not swing",
+        "Do not let elbows flare out",
+        "Do not rush"
+      ],
+      "mistakes": [
+        "Using momentum to heave the weight",
+        "Cutting the top contraction short",
+        "Going so heavy the wrists bend"
+      ],
+      "tip": "Try cross-body hammer curls (curl toward the opposite shoulder) for an even stronger brachialis hit."
+    },
+    "plank": {
+      "name": "Plank",
+      "icon": "ic_plank",
+      "primaryMuscles": [
+        "Abs",
+        "Core"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=MHQmRINu4jU",
+        "embedUrl": "https://www.youtube.com/embed/MHQmRINu4jU",
+        "channel": "Curtis Penner",
+        "title": "Ab Exercises: The Plank"
+      },
+      "referenceNote": "Not a rest exercise — a full-body tension drill. Squeeze everything.",
+      "setup": [
+        "Forearms on the floor, elbows under shoulders.",
+        "Extend legs back, feet hip-width.",
+        "Tuck the pelvis slightly — flat back, no sag.",
+        "Look at the floor, neck neutral."
+      ],
+      "tempo": "Hold — breathe steadily behind a braced core.",
+      "dos": [
+        "Squeeze glutes and quads hard",
+        "Push the floor away to engage the serratus",
+        "Breathe slowly and continuously",
+        "Stop the set when form breaks"
+      ],
+      "donts": [
+        "Do not let hips sag",
+        "Do not pike hips to the ceiling",
+        "Do not hold your breath",
+        "Do not crane your neck up"
+      ],
+      "mistakes": [
+        "Sagging lower back — the most common plank fail",
+        "Shallow breathing or breath-holding",
+        "Elbows too far forward, dumping into the shoulders"
+      ],
+      "tip": "Cannot hold 45 seconds clean? Do shorter perfect holds — quality seconds beat sloppy minutes."
+    },
+    "arnold_press": {
+      "name": "Arnold Press",
+      "icon": "ic_arnold_press",
+      "primaryMuscles": [
+        "Shoulders",
+        "Triceps"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=pQDrcNoDNVM",
+        "embedUrl": "https://www.youtube.com/embed/pQDrcNoDNVM",
+        "channel": "Testosterone Nation",
+        "title": "Dumbbell Arnold Press"
+      },
+      "referenceNote": "The rotation hits all three delt heads in one movement — the 3D shoulder builder.",
+      "setup": [
+        "Hold dumbbells at shoulder height, palms facing you.",
+        "Elbows tucked in front, core braced.",
+        "Press overhead while rotating palms to face forward.",
+        "Reverse the rotation on the way down."
+      ],
+      "tempo": "2-1-2 — rotate smoothly, never flick.",
+      "dos": [
+        "Rotate smoothly through the whole rep",
+        "Keep the motion in front of your body",
+        "Finish with biceps near ears, palms forward",
+        "Control the rotation — no wrist flicking"
+      ],
+      "donts": [
+        "Do not arch your back",
+        "Do not use a weight that kills the rotation",
+        "Do not rush the turn",
+        "Do not shrug at the top"
+      ],
+      "mistakes": [
+        "Turning it into a regular press with a token twist",
+        "Leaning back to press heavier",
+        "Losing core tension and wobbling"
+      ],
+      "tip": "Go lighter than your normal press — the rotation is the stimulus, not the load."
+    },
+    "close_grip_press": {
+      "name": "Close-Grip DB Press",
+      "icon": "ic_close_grip_press",
+      "primaryMuscles": [
+        "Chest",
+        "Triceps"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=cefsgoFQNNA",
+        "embedUrl": "https://www.youtube.com/embed/cefsgoFQNNA",
+        "channel": "Live Lean TV Daily Exercises",
+        "title": "How To Do A DUMBBELL CLOSE GRIP FLAT BENCH PRESS (HEX PRESS) | Exercise Demonstration Video"
+      },
+      "referenceNote": "Dumbbells pressed together — hammers the triceps and inner chest at once.",
+      "setup": [
+        "Lie on the flat bench, dumbbells pressed together over your chest.",
+        "Neutral grip, palms facing each other.",
+        "Shoulder blades pinched, feet planted.",
+        "Lower the pair to your lower chest, elbows tucked."
+      ],
+      "tempo": "2-1-2 — keep the inward squeeze the whole time.",
+      "dos": [
+        "Squeeze the dumbbells together the whole set",
+        "Tuck elbows close to your ribs",
+        "Lower to the lower chest/sternum",
+        "Keep constant inward pressure"
+      ],
+      "donts": [
+        "Do not let the dumbbells separate",
+        "Do not flare the elbows",
+        "Do not bounce off the chest",
+        "Do not lock out aggressively"
+      ],
+      "mistakes": [
+        "Letting the weights drift apart mid-set",
+        "Flaring elbows into a regular press",
+        "Rushing and losing the squeeze"
+      ],
+      "tip": "The inward squeeze matters more than the weight — if you cannot keep them touching, go lighter."
+    },
+    "front_raise": {
+      "name": "Front Raises",
+      "icon": "ic_front_raise",
+      "primaryMuscles": [
+        "Front Delts"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=H6RPefFMfjg",
+        "embedUrl": "https://www.youtube.com/embed/H6RPefFMfjg",
+        "channel": "Fit Father Project - Fitness For Busy Fathers",
+        "title": "How To Do The Front Raise With Dumbbells OR Kettlebells"
+      },
+      "referenceNote": "Direct front-delt work — light weight, strict reps, big payoff.",
+      "setup": [
+        "Stand tall, dumbbells in front of your thighs.",
+        "Slight bend in the elbows.",
+        "Brace your core.",
+        "Raise straight in front to shoulder height."
+      ],
+      "tempo": "2-1-2 — no swinging.",
+      "dos": [
+        "Stop at shoulder height",
+        "Keep the torso perfectly still",
+        "Slight elbow bend, fixed",
+        "Lower slowly"
+      ],
+      "donts": [
+        "Do not swing the weights up",
+        "Do not raise above shoulder height",
+        "Do not lean back",
+        "Do not shrug"
+      ],
+      "mistakes": [
+        "Using momentum from the hips",
+        "Lifting into the traps' territory above parallel",
+        "Going too heavy for an isolation move"
+      ],
+      "tip": "Alternate arms to keep each rep strict — it halves the cheating opportunities."
+    },
+    "prone_y_raise": {
+      "name": "Prone Y-Raises",
+      "icon": "ic_prone_y_raise",
+      "primaryMuscles": [
+        "Rear Delts",
+        "Lower Traps"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=BvwsWkgW2D4",
+        "embedUrl": "https://www.youtube.com/embed/BvwsWkgW2D4",
+        "channel": "Exercise Healthcare Australia",
+        "title": "How To Perform The Dumbbell Prone Y Raise"
+      },
+      "referenceNote": "Lower-trap builder for healthy shoulders and better posture — go embarrassingly light.",
+      "setup": [
+        "Lie chest-down on an incline bench (30-45 degrees).",
+        "Arms hang straight down, thumbs pointing up.",
+        "Depress shoulder blades — away from ears.",
+        "Raise arms into a Y shape until in line with your torso."
+      ],
+      "tempo": "2-2-2 — pause at the top.",
+      "dos": [
+        "Think 'reach long' not 'lift high'",
+        "Thumbs to the ceiling",
+        "Keep shoulders down away from ears",
+        "Pause and squeeze at the top"
+      ],
+      "donts": [
+        "Do not shrug",
+        "Do not arch your lower back to lift higher",
+        "Do not use momentum",
+        "Do not go heavy — 2 to 5 kg is plenty"
+      ],
+      "mistakes": [
+        "Shrugging the traps instead of using lower traps",
+        "Lifting the chest off the bench",
+        "Rushing through with body English"
+      ],
+      "tip": "Start with no weight at all — if you cannot feel your mid-back working, weight will not help."
+    },
+    "russian_twist": {
+      "name": "Russian Twists",
+      "icon": "ic_russian_twist",
+      "primaryMuscles": [
+        "Obliques",
+        "Abs"
+      ],
+      "video": {
+        "watchUrl": "https://www.youtube.com/watch?v=63QN-Id-p94",
+        "embedUrl": "https://www.youtube.com/embed/63QN-Id-p94",
+        "channel": "MuscleWiki",
+        "title": "How To Train Your Obliques The Scientific Way"
+      },
+      "referenceNote": "Oblique builder — rotate the torso, not just the arms.",
+      "setup": [
+        "Sit with knees bent, heels lightly on the floor.",
+        "Lean back slightly, chest up, back straight.",
+        "Hold one dumbbell at your chest.",
+        "Rotate your torso to touch the weight down each side."
+      ],
+      "tempo": "1-1-1 with control — no bouncing.",
+      "dos": [
+        "Rotate from the torso, shoulders turning",
+        "Keep the chest up throughout",
+        "Move with control, pause each side",
+        "Breathe out on each twist"
+      ],
+      "donts": [
+        "Do not round your lower back",
+        "Do not just swing the arms",
+        "Do not hold your breath",
+        "Do not rush"
+      ],
+      "mistakes": [
+        "Arms-only movement with a still torso",
+        "Rounding the back under fatigue",
+        "Going too fast to feel the obliques"
+      ],
+      "tip": "Lift your heels an inch off the floor to level up — only once the grounded version is strict."
+    }
+  }
+}

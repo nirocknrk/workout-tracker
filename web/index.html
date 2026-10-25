@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Workout Tracker</title>
+<style>
+:root{
+  --bg:#f4f6f8; --card:#ffffff; --ink:#1c2530; --muted:#6b7684;
+  --accent:#2563eb; --accent-dark:#1d4ed8; --line:#e3e8ee;
+  --good:#15803d; --warn:#b45309; --danger:#dc2626;
+  --radius:14px;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+body{margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg); color:var(--ink); font-size:16px; line-height:1.45;}
+header.top{position:sticky; top:0; z-index:20; background:var(--card); border-bottom:1px solid var(--line);
+  padding:12px 16px; display:flex; align-items:center; justify-content:space-between;}
+header.top h1{font-size:18px; margin:0; letter-spacing:.2px;}
+nav.tabs{display:flex; gap:8px;}
+nav.tabs button{border:1px solid var(--line); background:var(--bg); color:var(--ink);
+  border-radius:999px; padding:8px 14px; font-size:14px; cursor:pointer;}
+nav.tabs button.active{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600;}
+main{max-width:560px; margin:0 auto; padding:14px 14px 40px;}
+.card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:14px; margin-bottom:12px;}
+.card h2{margin:0 0 4px; font-size:17px;}
+.card h3{margin:14px 0 6px; font-size:15px;}
+.sub{color:var(--muted); font-size:13px; margin:0 0 10px;}
+.btn{display:inline-block; border:none; border-radius:12px; padding:13px 18px; font-size:16px;
+  font-weight:700; cursor:pointer; background:var(--accent); color:#fff; width:100%; text-align:center;}
+.btn:active{background:var(--accent-dark); transform:scale(.99);}
+.btn.ghost{background:var(--bg); color:var(--ink); border:1px solid var(--line); font-weight:600;}
+.btn.small{width:auto; padding:8px 12px; font-size:14px;}
+.btn.danger{background:#fef2f2; color:var(--danger); border:1px solid #fecaca;}
+.summary{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:12px;}
+.stat{background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:10px; text-align:center;}
+.stat .v{font-size:20px; font-weight:800;}
+.stat .l{font-size:12px; color:var(--muted);}
+.exrow{display:flex; align-items:center; gap:12px; padding:10px 4px; border-top:1px solid var(--line); cursor:pointer;}
+.exrow:first-of-type{border-top:none;}
+.exrow .icon{flex:0 0 40px; width:40px; height:40px; border-radius:10px; background:#eef2ff;
+  display:flex; align-items:center; justify-content:center; color:var(--accent);}
+.exrow .icon svg{width:28px; height:28px;}
+.exrow .nm{flex:1;}
+.exrow .nm .t{font-weight:600; font-size:15px;}
+.exrow .nm .s{font-size:13px; color:var(--muted);}
+.exrow .go{color:var(--muted); font-size:20px; padding:4px 8px;}
+.setrow{display:flex; align-items:center; gap:8px; margin-bottom:8px;}
+.setrow .n{flex:0 0 44px; font-weight:700; color:var(--muted); font-size:14px;}
+.setrow input{flex:1; min-width:0; padding:11px 10px; font-size:16px; border:1px solid var(--line);
+  border-radius:10px; background:#fbfcfe;}
+.setrow input:focus{outline:2px solid var(--accent); border-color:var(--accent);}
+.setrow .u{flex:0 0 64px; font-size:13px; color:var(--muted);}
+.setrow .x{flex:0 0 34px; border:1px solid var(--line); background:var(--bg); border-radius:10px;
+  font-size:16px; padding:8px 0; cursor:pointer; color:var(--danger);}
+.logex{border:1px solid var(--line); border-radius:var(--radius); padding:12px; margin-bottom:12px; background:var(--card);}
+.logex .head{display:flex; align-items:center; gap:10px; margin-bottom:4px;}
+.logex .head .icon{flex:0 0 36px; width:36px; height:36px; border-radius:9px; background:#eef2ff;
+  display:flex; align-items:center; justify-content:center; color:var(--accent);}
+.logex .head .icon svg{width:24px; height:24px;}
+.logex .head .t{flex:1; font-weight:700;}
+.logex .target{font-size:13px; color:var(--muted); margin:0 0 10px 46px;}
+.guidebtn{border:1px solid var(--line); background:#f8fafc; border-radius:10px; padding:8px 12px;
+  font-size:13px; cursor:pointer; color:var(--accent); font-weight:600; margin:0 0 10px 46px;}
+.video{position:relative; width:100%; padding-bottom:56.25%; margin:10px 0; border-radius:12px; overflow:hidden; background:#000;}
+.video iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0;}
+.attr{font-size:12px; color:var(--muted); margin:2px 0 10px;}
+.attr a{color:var(--accent);}
+.note{background:#f0f7ff; border-left:4px solid var(--accent); padding:10px 12px; border-radius:0 10px 10px 0;
+  font-size:14px; margin:10px 0;}
+ol.setup, ul.list{margin:6px 0 12px; padding-left:22px; font-size:14px;}
+ol.setup li, ul.list li{margin-bottom:6px;}
+.cols{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+.cols .do{background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:10px;}
+.cols .dont{background:#fef2f2; border:1px solid #fecaca; border-radius:10px; padding:10px;}
+.cols h4{margin:0 0 6px; font-size:13px;}
+.cols ul{margin:0; padding-left:18px; font-size:13px;}
+.cols li{margin-bottom:4px;}
+.tip{background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:10px 12px; font-size:14px; margin:10px 0;}
+.tempo{font-size:14px; font-weight:600; margin:8px 0;}
+.hist{border:1px solid var(--line); border-radius:var(--radius); background:var(--card); padding:12px; margin-bottom:10px;}
+.hist .hd{display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;}
+.hist .hd .d{font-weight:700;}
+.hist .hd .w{font-size:13px; color:var(--muted);}
+.hist .en{font-size:13px; color:var(--muted); margin:2px 0;}
+.empty{color:var(--muted); text-align:center; padding:30px 10px; font-size:14px;}
+.backlink{display:inline-block; margin-bottom:10px; color:var(--accent); font-size:14px; cursor:pointer; font-weight:600;}
+footer{max-width:560px; margin:0 auto; padding:0 14px 30px; color:var(--muted); font-size:12px; text-align:center;}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Workout Tracker</h1>
+  <nav class="tabs">
+    <button id="tab-program" class="active">Program</button>
+    <button id="tab-history">History</button>
+  </nav>
+</header>
+<main id="app"></main>
+<footer>Your logs are stored privately in this browser (localStorage). No account, no server.</footer>
+<script>
+"use strict";
+/* ============ EXERCISE DATA ============ */
+const ICON_OPEN = '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">';
+const ICON_CLOSE = '</svg>';
+const EX = {
+flatDbBench: {
+  name: "Flat DB Bench Press",
+  icon: ICON_OPEN + '<rect x="4" y="21" width="24" height="3" rx="1"/><path d="M9 24v5M23 24v5"/><line x1="8" y1="12" x2="24" y2="12"/><rect x="5.5" y="9" width="3" height="6" rx="1"/><rect x="23.5" y="9" width="3" height="6" rx="1"/><line x1="16" y1="12" x2="16" y2="18"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: null,
+  video: {id:"ufl6HV5NN9g", channel:"Barbell Logic", title:"The Dumbbell Bench Press: Gym Shorts (How To)"},
+  note: "The foundation chest builder — dumbbells allow a deeper stretch than a barbell and fix left-right imbalances.",
+  setup: ["Sit on the flat bench with a dumbbell resting on each thigh.","Kick the weights up with your knees as you lie back.","Plant feet flat, pinch shoulder blades together with a slight arch.","Start with dumbbells above your chest, wrists straight."],
+  tempo: "2-1-2 — 2 seconds down, 1 second pause on the chest, 2 seconds up.",
+  dos: ["Keep elbows at roughly 45 degrees to your torso","Drive your feet into the floor for full-body tension","Lower until you feel a deep chest stretch","Keep shoulder blades pinched the whole set"],
+  donts: ["Do not flare elbows out to 90 degrees","Do not bounce the weights off your chest","Do not clang the dumbbells together at the top","Do not lift your hips off the bench"],
+  mistakes: ["Pressing with elbows flared wide, stressing the shoulders","Half reps that never reach chest level","Losing the shoulder-blade pinch mid-set"],
+  tip: "Think about bending the dumbbell handles outward as you press — it keeps the chest engaged and elbows in the safe zone."
+},
+inclineDbPress: {
+  name: "Incline DB Press",
+  icon: ICON_OPEN + '<path d="M5 25 L21 9"/><rect x="4" y="24" width="6" height="3" rx="1"/><path d="M21 9v5"/><line x1="10" y1="12" x2="22" y2="6"/><rect x="8" y="9.5" width="3" height="5" rx="1"/><rect x="21" y="3.5" width="3" height="5" rx="1"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: null,
+  video: {id:"8xNKkSpxlh8", channel:"Myprotein", title:"Incline Dumbbell Bench Press"},
+  note: "Targets the upper chest — a 30-degree incline keeps tension on the pecs instead of shifting it to the shoulders.",
+  setup: ["Set the bench to about 30 degrees — one notch above flat.","Rest dumbbells on your thighs, kick up and lie back.","Feet flat, shoulder blades pinched, slight arch.","Start with dumbbells at upper-chest level."],
+  tempo: "2-1-2 — controlled down, brief squeeze, powerful press.",
+  dos: ["Keep the 30-degree angle — steeper shifts work to shoulders","Press up and slightly inward in an arc","Squeeze the chest for a beat at the top","Control the full stretch at the bottom"],
+  donts: ["Do not set the bench past 45 degrees","Do not let the dumbbells drift outward","Do not rush the lowering phase","Do not over-arch your back"],
+  mistakes: ["Too steep a bench turning it into a shoulder press","Cutting range short to lift heavier","Letting wrists bend back under the load"],
+  tip: "Mark your bench's 30-degree notch with tape so setup is instant every session."
+},
+standingOhp: {
+  name: "Standing DB Overhead Press",
+  icon: ICON_OPEN + '<circle cx="16" cy="5.5" r="2.5"/><line x1="16" y1="8" x2="16" y2="20"/><line x1="16" y1="11" x2="9" y2="4"/><line x1="16" y1="11" x2="23" y2="4"/><line x1="7" y1="4" x2="11" y2="4"/><line x1="21" y1="4" x2="25" y2="4"/><line x1="16" y1="20" x2="13" y2="28"/><line x1="16" y1="20" x2="19" y2="28"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: null,
+  video: {id:"yizMbcuwCj4", channel:"White Coat Trainer", title:"Standing Dumbbell Overhead Press"},
+  note: "Builds the front and side delts while your core works overtime to keep you stable.",
+  setup: ["Stand with feet hip-width apart, dumbbells at shoulder height.","Brace your core and squeeze your glutes.","Ribs down — do not lean back.","Press straight overhead until arms are nearly straight."],
+  tempo: "2-1-2 — no bouncing out of the bottom.",
+  dos: ["Squeeze glutes hard before every rep","Press the weights in a straight vertical line","Keep wrists stacked over elbows","Lower all the way to shoulder height"],
+  donts: ["Do not arch your lower back to cheat the weight up","Do not shrug the weights with your traps","Do not bang dumbbells together overhead","Do not hold your breath for the whole set"],
+  mistakes: ["Leaning back turns it into an incline chest press","Using leg drive to bounce the weight up","Stopping the press at forehead height"],
+  tip: "If your lower back complains, do it seated with back support — same delts, less cheating."
+},
+lateralRaise: {
+  name: "Lateral Raises",
+  icon: ICON_OPEN + '<circle cx="16" cy="5.5" r="2.5"/><line x1="16" y1="8" x2="16" y2="20"/><line x1="16" y1="12" x2="6" y2="12"/><line x1="16" y1="12" x2="26" y2="12"/><line x1="4" y1="10" x2="8" y2="14"/><line x1="24" y1="10" x2="28" y2="14"/><line x1="16" y1="20" x2="13" y2="28"/><line x1="16" y1="20" x2="19" y2="28"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: null,
+  video: {id:"TM6se0vr1VA", channel:"Barbell Logic", title:"Dumbbell Lateral Raise: Gym Shorts (How To)"},
+  note: "The width builder — strict form with light weight beats heavy swinging every time.",
+  setup: ["Stand tall, dumbbells at your sides, palms facing in.","Slight bend in the elbows — keep it fixed.","Lean forward just a touch.","Raise out to the sides until arms reach shoulder height."],
+  tempo: "2-1-3 — slower on the way down.",
+  dos: ["Lead with your elbows, not your hands","Stop at shoulder height","Keep the motion slightly in front of the side plane","Control the negative for a full 3 seconds"],
+  donts: ["Do not swing the weights up with momentum","Do not shrug your traps toward your ears","Do not raise above shoulder height","Do not use a weight you cannot pause with"],
+  mistakes: ["Turning it into a full-body heave","Lifting the arms too far forward (becomes a front raise)","Dropping the weights instead of lowering them"],
+  tip: "Do the last set as a drop set — cut the weight in half and keep going to failure for extra side-delt growth."
+},
+ohTricepsExt: {
+  name: "Overhead Triceps Extension",
+  icon: ICON_OPEN + '<circle cx="11" cy="6" r="2.5"/><line x1="11" y1="9" x2="11" y2="24"/><line x1="11" y1="12" x2="17" y2="8"/><line x1="17" y1="8" x2="14" y2="15"/><rect x="12" y="13" width="4" height="3" rx="1" transform="rotate(30 14 14.5)"/><line x1="11" y1="24" x2="11" y2="29"/><line x1="11" y1="24" x2="15" y2="29"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: null,
+  video: {id:"SfAxwNHfMyY", channel:"Stan Bakh", title:"Dumbbell Overhead Triceps Extension — proper technique"},
+  note: "Stretches the long head of the triceps like nothing else — the key to bigger arms.",
+  setup: ["Hold one dumbbell with both hands, arms extended overhead.","Keep upper arms close to your head, elbows pointing up.","Brace your core, ribs down.","Lower the weight behind your head by bending only the elbows."],
+  tempo: "2-1-2 — pause in the deep stretch.",
+  dos: ["Keep upper arms perfectly still","Lower until you feel a deep triceps stretch","Squeeze hard at the top without harsh lockout","Use a weight you can control behind your head"],
+  donts: ["Do not let elbows flare wide","Do not arch your back under the load","Do not cut the range short","Do not rush — the stretch is the point"],
+  mistakes: ["Moving the whole arm instead of just the forearm","Going too heavy and turning it into a shoulder workout","Skipping the bottom stretch"],
+  tip: "Seated with back support removes all cheating — try it when your lower back wants to join in."
+},
+hangingKneeRaise: {
+  name: "Hanging Knee/Leg Raises",
+  icon: ICON_OPEN + '<line x1="4" y1="4" x2="28" y2="4"/><line x1="13" y1="4" x2="13" y2="8"/><line x1="19" y1="4" x2="19" y2="8"/><circle cx="16" cy="11" r="2.5"/><line x1="16" y1="14" x2="16" y2="20"/><line x1="16" y1="20" x2="11" y2="24"/><line x1="16" y1="20" x2="21" y2="24"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: null,
+  video: {id:"dDd2gMmbWJU", channel:"Nottingham Physio", title:"Hanging Knee Raise Tutorial | Lower-Abs + Stability"},
+  note: "The king of lower-ab exercises — control the swing and your abs do all the work. No pull-up bar at home? Do lying reverse crunches instead.",
+  setup: ["Hang from a pull-up bar, hands shoulder-width apart.","Let your body settle — no swinging.","Brace your core, ribs down.","Curl your knees up toward your chest, tilting the pelvis."],
+  tempo: "1-1-3 — slow lowering is everything.",
+  dos: ["Pause briefly at the top of each rep","Lower slowly for 3 seconds","Keep the swing completely out of it","Breathe out as you lift the knees"],
+  donts: ["Do not swing to generate momentum","Do not just lift the knees without curling the pelvis","Do not drop down fast","Do not hold your breath"],
+  mistakes: ["Kipping the reps up with body swing","Stopping at 90 degrees without the pelvic curl — that is hip flexors, not abs","Letting the shoulders shrug up to the ears"],
+  tip: "When 15 strict reps get easy, straighten the legs a little more each week toward full leg raises."
+},
+oneArmRow: {
+  name: "One-Arm DB Row",
+  icon: ICON_OPEN + '<rect x="19" y="19" width="9" height="3" rx="1"/><path d="M21 22v5M26 22v5"/><circle cx="9" cy="8" r="2.5"/><line x1="9" y1="11" x2="17" y2="16"/><line x1="17" y1="16" x2="21" y2="16"/><line x1="13" y1="14" x2="11" y2="21"/><rect x="9" y="20" width="4" height="3" rx="1"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: "side",
+  video: {id:"TaHaD1tx9BI", channel:"White Coat Trainer", title:"How To Dumbbell Row Correctly"},
+  note: "Builds a thick back one side at a time and exposes strength imbalances.",
+  setup: ["Place one knee and the same-side hand on the bench.","Plant the other foot wide, back flat and parallel to the floor.","Let the dumbbell hang straight down from the shoulder.","Pull the elbow up and back toward your hip."],
+  tempo: "2-1-2 — squeeze the shoulder blade at the top.",
+  dos: ["Pull toward your hip, not your chest","Squeeze the shoulder blade at the top","Keep your torso square — no twisting","Lower under full control"],
+  donts: ["Do not rotate your torso to heave the weight","Do not shrug the shoulder toward your ear","Do not let your lower back round","Do not rush the stretch at the bottom"],
+  mistakes: ["Twisting the whole body to lift heavier","Pulling with the bicep instead of driving the elbow","Cutting the bottom range short"],
+  tip: "Start each set with your weaker side and match reps on the stronger side — imbalances even out fast."
+},
+dbRdl: {
+  name: "DB Romanian Deadlift",
+  icon: ICON_OPEN + '<circle cx="10" cy="6" r="2.5"/><line x1="10" y1="9" x2="17" y2="17"/><line x1="17" y1="17" x2="15" y2="28"/><line x1="17" y1="17" x2="20" y2="28"/><line x1="14" y1="13" x2="18" y2="22"/><rect x="16" y="21" width="4" height="3" rx="1"/><line x1="14" y1="13" x2="12" y2="22"/><rect x="10" y="21" width="4" height="3" rx="1"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: null,
+  video: {id:"aa57T45iFSE", channel:"National Academy of Sports Medicine (NASM)", title:"How to do a Dumbbell Romanian Deadlift | Proper Form & Technique | NASM"},
+  note: "A hip hinge, not a squat — the best hamstring and glute builder you can do with dumbbells.",
+  setup: ["Stand tall, dumbbells in front of your thighs, feet hip-width.","Soften the knees and lock that slight bend in.","Push your hips straight back, chest proud.","Lower along your legs until you feel a deep hamstring stretch."],
+  tempo: "3-1-2 — slow hinge down.",
+  dos: ["Initiate every rep by pushing the hips back","Keep the dumbbells brushing your legs","Keep your spine neutral throughout","Drive the hips forward and squeeze glutes at the top"],
+  donts: ["Do not round your lower back to go deeper","Do not bend the knees more as you descend","Do not let the weights drift away from your body","Do not hyperextend at the top"],
+  mistakes: ["Squatting the weight down instead of hinging","Chasing depth past a flat back","Feeling it all in the lower back — the hinge pattern needs work"],
+  tip: "Stand a foot in front of a wall and tap your glutes to it on each rep — instant hinge feedback."
+},
+bulgarianSplitSquat: {
+  name: "Bulgarian Split Squat",
+  icon: ICON_OPEN + '<rect x="23" y="14" width="5" height="14" rx="1"/><circle cx="13" cy="5" r="2.5"/><line x1="13" y1="8" x2="13" y2="17"/><line x1="13" y1="17" x2="11" y2="28"/><line x1="13" y1="17" x2="22" y2="19"/><line x1="13" y1="11" x2="8" y2="17"/><rect x="6" y="16" width="4" height="3" rx="1"/><line x1="13" y1="11" x2="18" y2="17"/><rect x="17" y="16" width="4" height="3" rx="1"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: "leg",
+  video: {id:"AaCqSV2vpn4", channel:"Dr Donald A Ozello DC, NSCA-CPT", title:"Dumbbell Split Squats AKA Bulgarian Split Squats and Rear Foot Elevated Split Squat"},
+  note: "Brutal, humbling, and brilliant — builds each leg independently with just dumbbells and a bench.",
+  setup: ["Stand a stride in front of the bench, back to it.","Rest the top of your rear foot on the bench.","Dumbbells at your sides, torso upright.","Lower straight down until your front thigh is parallel."],
+  tempo: "2-1-2 — own the bottom position.",
+  dos: ["Keep your torso upright, chest proud","Drive through the front heel","Let the front knee travel naturally over the toes","Keep 90 percent of the weight on the front leg"],
+  donts: ["Do not push off the rear foot","Do not let the front knee collapse inward","Do not lean far forward","Do not short-change the depth"],
+  mistakes: ["Standing too close or too far from the bench","Staying too light because of balance — go heavier once stable","Bouncing out of the bottom"],
+  tip: "Do all sets on one leg before switching — the pump and the focus are both better."
+},
+rearDeltFly: {
+  name: "Bent-Over Rear Delt Fly",
+  icon: ICON_OPEN + '<circle cx="16" cy="6" r="2.5"/><line x1="16" y1="9" x2="16" y2="19"/><line x1="16" y1="13" x2="7" y2="21"/><line x1="16" y1="13" x2="25" y2="21"/><rect x="4" y="19" width="4" height="3" rx="1" transform="rotate(-35 6 20.5)"/><rect x="24" y="19" width="4" height="3" rx="1" transform="rotate(35 26 20.5)"/><line x1="16" y1="19" x2="13" y2="28"/><line x1="16" y1="19" x2="19" y2="28"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: null,
+  video: {id:"zA-vK74AgEc", channel:"TKOH Performance", title:"Dumbbell Bent Over Rear Delt Fly"},
+  note: "The missing piece for 3D shoulders — direct rear-delt work for posture and balance.",
+  setup: ["Hinge forward until your torso is near parallel to the floor.","Let the dumbbells hang under your shoulders, slight elbow bend.","Brace your core, back flat.","Raise the weights out to the sides in a wide arc to shoulder height."],
+  tempo: "2-1-2 — pause at the top.",
+  dos: ["Lead with your elbows","Stop when upper arms reach shoulder height","Squeeze the shoulder blades at the top","Use a light weight you can control"],
+  donts: ["Do not swing the torso up for momentum","Do not pull the weights back toward your hips","Do not shrug your traps","Do not go heavy — form dies fast here"],
+  mistakes: ["Using back muscles by pulling too far back","Bouncing out of the bottom position","Letting the lower back round under fatigue"],
+  tip: "Do these chest-supported (face down on an incline bench) when you want zero cheating."
+},
+bicepCurl: {
+  name: "DB Bicep Curls",
+  icon: ICON_OPEN + '<circle cx="16" cy="5" r="2.5"/><line x1="16" y1="8" x2="16" y2="22"/><line x1="12" y1="12" x2="12" y2="20"/><line x1="12" y1="20" x2="19" y2="15"/><rect x="18" y="12" width="3" height="6" rx="1" transform="rotate(35 19.5 15)"/><line x1="20" y1="12" x2="20" y2="20"/><line x1="16" y1="22" x2="13" y2="29"/><line x1="16" y1="22" x2="19" y2="29"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: null,
+  video: {id:"XE_pHwbst04", channel:"Fit Father Project - Fitness For Busy Fathers", title:"Bicep Curls — (DUMBBELL FORM & TECHNIQUE)"},
+  note: "Simple, but only effective when the ego stays out of it — strict curls build strict peaks.",
+  setup: ["Stand tall, dumbbells at your sides, palms forward.","Pin your elbows to your ribs.","Brace your core.","Curl the weights toward your shoulders."],
+  tempo: "2-1-3 — the lowering builds the muscle.",
+  dos: ["Keep upper arms completely still","Squeeze hard at the top","Lower for a full 3 seconds","Keep wrists straight"],
+  donts: ["Do not swing the weights up","Do not let elbows drift forward","Do not lean back","Do not drop the weights"],
+  mistakes: ["Turning every set into a full-body swing","Half reps that skip the bottom stretch","Letting the shoulders do the lifting"],
+  tip: "Face a wall with your back and elbows lightly touching it — instant strict-curl feedback."
+},
+hammerCurl: {
+  name: "Hammer Curls",
+  icon: ICON_OPEN + '<rect x="13" y="3" width="6" height="4" rx="1"/><rect x="13" y="13" width="6" height="4" rx="1"/><line x1="16" y1="7" x2="16" y2="13"/><circle cx="16" cy="22" r="2.5"/><line x1="16" y1="25" x2="16" y2="29"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: null,
+  video: {id:"TwD-YGVP4Bk", channel:"Howcast", title:"How to Do a Hammer Curl | Arm Workout"},
+  note: "Thickens the arms from the side — hits the brachialis and forearms that regular curls miss.",
+  setup: ["Stand tall, dumbbells at your sides, palms facing your thighs.","Elbows pinned to your ribs.","Brace your core.","Curl straight up without rotating the wrists."],
+  tempo: "2-1-2 — controlled both ways.",
+  dos: ["Keep the neutral grip the whole rep","Keep elbows locked to your sides","Squeeze at the top","Lower under control"],
+  donts: ["Do not rotate into a regular curl mid-rep","Do not swing","Do not let elbows flare out","Do not rush"],
+  mistakes: ["Using momentum to heave the weight","Cutting the top contraction short","Going so heavy the wrists bend"],
+  tip: "Try cross-body hammer curls (curl toward the opposite shoulder) for an even stronger brachialis hit."
+},
+plank: {
+  name: "Plank",
+  icon: ICON_OPEN + '<line x1="6" y1="20" x2="26" y2="20"/><circle cx="27" cy="16.5" r="2.5"/><line x1="9" y1="20" x2="9" y2="27"/><line x1="12" y1="20" x2="12" y2="27"/><line x1="6" y1="20" x2="6" y2="25"/>' + ICON_CLOSE,
+  unit: "seconds", unilateral: null,
+  video: {id:"MHQmRINu4jU", channel:"Curtis Penner", title:"Ab Exercises: The Plank"},
+  note: "Not a rest exercise — a full-body tension drill. Squeeze everything.",
+  setup: ["Forearms on the floor, elbows under shoulders.","Extend legs back, feet hip-width.","Tuck the pelvis slightly — flat back, no sag.","Look at the floor, neck neutral."],
+  tempo: "Hold — breathe steadily behind a braced core.",
+  dos: ["Squeeze glutes and quads hard","Push the floor away to engage the serratus","Breathe slowly and continuously","Stop the set when form breaks"],
+  donts: ["Do not let hips sag","Do not pike hips to the ceiling","Do not hold your breath","Do not crane your neck up"],
+  mistakes: ["Sagging lower back — the most common plank fail","Shallow breathing or breath-holding","Elbows too far forward, dumping into the shoulders"],
+  tip: "Cannot hold 45 seconds clean? Do shorter perfect holds — quality seconds beat sloppy minutes."
+},
+arnoldPress: {
+  name: "Arnold Press",
+  icon: ICON_OPEN + '<circle cx="16" cy="5.5" r="2.5"/><line x1="16" y1="8" x2="16" y2="20"/><line x1="16" y1="11" x2="10" y2="5"/><line x1="16" y1="11" x2="22" y2="5"/><path d="M24 12a7 7 0 1 1-2-5"/><path d="M22 4v4h-4"/><line x1="16" y1="20" x2="13" y2="28"/><line x1="16" y1="20" x2="19" y2="28"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: null,
+  video: {id:"pQDrcNoDNVM", channel:"Testosterone Nation", title:"Dumbbell Arnold Press"},
+  note: "The rotation hits all three delt heads in one movement — the 3D shoulder builder.",
+  setup: ["Hold dumbbells at shoulder height, palms facing you.","Elbows tucked in front, core braced.","Press overhead while rotating palms to face forward.","Reverse the rotation on the way down."],
+  tempo: "2-1-2 — rotate smoothly, never flick.",
+  dos: ["Rotate smoothly through the whole rep","Keep the motion in front of your body","Finish with biceps near ears, palms forward","Control the rotation — no wrist flicking"],
+  donts: ["Do not arch your back","Do not use a weight that kills the rotation","Do not rush the turn","Do not shrug at the top"],
+  mistakes: ["Turning it into a regular press with a token twist","Leaning back to press heavier","Losing core tension and wobbling"],
+  tip: "Go lighter than your normal press — the rotation is the stimulus, not the load."
+},
+closeGripPress: {
+  name: "Close-Grip DB Press",
+  icon: ICON_OPEN + '<rect x="4" y="22" width="24" height="3" rx="1"/><path d="M9 25v4M23 25v4"/><rect x="13" y="8" width="3" height="10" rx="1"/><rect x="16" y="8" width="3" height="10" rx="1"/><line x1="14.5" y1="8" x2="14.5" y2="4"/><line x1="17.5" y1="8" x2="17.5" y2="4"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: null,
+  video: {id:"cefsgoFQNNA", channel:"Live Lean TV Daily Exercises", title:"How To Do A DUMBBELL CLOSE GRIP FLAT BENCH PRESS (HEX PRESS) | Exercise Demonstration Video"},
+  note: "Dumbbells pressed together — hammers the triceps and inner chest at once.",
+  setup: ["Lie on the flat bench, dumbbells pressed together over your chest.","Neutral grip, palms facing each other.","Shoulder blades pinched, feet planted.","Lower the pair to your lower chest, elbows tucked."],
+  tempo: "2-1-2 — keep the inward squeeze the whole time.",
+  dos: ["Squeeze the dumbbells together the whole set","Tuck elbows close to your ribs","Lower to the lower chest/sternum","Keep constant inward pressure"],
+  donts: ["Do not let the dumbbells separate","Do not flare the elbows","Do not bounce off the chest","Do not lock out aggressively"],
+  mistakes: ["Letting the weights drift apart mid-set","Flaring elbows into a regular press","Rushing and losing the squeeze"],
+  tip: "The inward squeeze matters more than the weight — if you cannot keep them touching, go lighter."
+},
+frontRaise: {
+  name: "Front Raises",
+  icon: ICON_OPEN + '<circle cx="14" cy="5.5" r="2.5"/><line x1="14" y1="8" x2="14" y2="21"/><line x1="14" y1="12" x2="26" y2="12"/><rect x="25" y="9" width="4" height="3" rx="1"/><line x1="14" y1="12" x2="10" y2="18"/><line x1="14" y1="21" x2="11" y2="29"/><line x1="14" y1="21" x2="17" y2="29"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: null,
+  video: {id:"H6RPefFMfjg", channel:"Fit Father Project - Fitness For Busy Fathers", title:"How To Do The Front Raise With Dumbbells OR Kettlebells"},
+  note: "Direct front-delt work — light weight, strict reps, big payoff.",
+  setup: ["Stand tall, dumbbells in front of your thighs.","Slight bend in the elbows.","Brace your core.","Raise straight in front to shoulder height."],
+  tempo: "2-1-2 — no swinging.",
+  dos: ["Stop at shoulder height","Keep the torso perfectly still","Slight elbow bend, fixed","Lower slowly"],
+  donts: ["Do not swing the weights up","Do not raise above shoulder height","Do not lean back","Do not shrug"],
+  mistakes: ["Using momentum from the hips","Lifting into the traps' territory above parallel","Going too heavy for an isolation move"],
+  tip: "Alternate arms to keep each rep strict — it halves the cheating opportunities."
+},
+proneYRaise: {
+  name: "Prone Y-Raises",
+  icon: ICON_OPEN + '<line x1="6" y1="24" x2="26" y2="24"/><line x1="16" y1="24" x2="8" y2="10"/><line x1="16" y1="24" x2="24" y2="10"/><circle cx="16" cy="24" r="1.6"/><rect x="6" y="7" width="3.5" height="3" rx="1" transform="rotate(-35 7.75 8.5)"/><rect x="22.5" y="7" width="3.5" height="3" rx="1" transform="rotate(35 24.25 8.5)"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: null,
+  video: {id:"BvwsWkgW2D4", channel:"Exercise Healthcare Australia", title:"How To Perform The Dumbbell Prone Y Raise"},
+  note: "Lower-trap builder for healthy shoulders and better posture — go embarrassingly light.",
+  setup: ["Lie chest-down on an incline bench (30-45 degrees).","Arms hang straight down, thumbs pointing up.","Depress shoulder blades — away from ears.","Raise arms into a Y shape until in line with your torso."],
+  tempo: "2-2-2 — pause at the top.",
+  dos: ["Think 'reach long' not 'lift high'","Thumbs to the ceiling","Keep shoulders down away from ears","Pause and squeeze at the top"],
+  donts: ["Do not shrug","Do not arch your lower back to lift higher","Do not use momentum","Do not go heavy — 2 to 5 kg is plenty"],
+  mistakes: ["Shrugging the traps instead of using lower traps","Lifting the chest off the bench","Rushing through with body English"],
+  tip: "Start with no weight at all — if you cannot feel your mid-back working, weight will not help."
+},
+russianTwist: {
+  name: "Russian Twists",
+  icon: ICON_OPEN + '<line x1="8" y1="26" x2="24" y2="26"/><line x1="12" y1="26" x2="15" y2="14"/><line x1="15" y1="14" x2="22" y2="18"/><circle cx="13" cy="10" r="2.5"/><path d="M20 6a6 6 0 1 1-4 8"/><path d="M16 4v4h4"/>' + ICON_CLOSE,
+  unit: "reps", unilateral: "side",
+  video: {id:"63QN-Id-p94", channel:"MuscleWiki", title:"How To Train Your Obliques The Scientific Way"},
+  note: "Oblique builder — rotate the torso, not just the arms.",
+  setup: ["Sit with knees bent, heels lightly on the floor.","Lean back slightly, chest up, back straight.","Hold one dumbbell at your chest.","Rotate your torso to touch the weight down each side."],
+  tempo: "1-1-1 with control — no bouncing.",
+  dos: ["Rotate from the torso, shoulders turning","Keep the chest up throughout","Move with control, pause each side","Breathe out on each twist"],
+  donts: ["Do not round your lower back","Do not just swing the arms","Do not hold your breath","Do not rush"],
+  mistakes: ["Arms-only movement with a still torso","Rounding the back under fatigue","Going too fast to feel the obliques"],
+  tip: "Lift your heels an inch off the floor to level up — only once the grounded version is strict."
+}
+};
+/* ============ PROGRAM ============ */
+const DAYS = [
+  {name:"Day 1 — Push", focus:"Chest · Shoulders · Triceps", items:[
+    {id:"flatDbBench", sets:4, reps:"6-10"},
+    {id:"inclineDbPress", sets:3, reps:"8-12"},
+    {id:"standingOhp", sets:3, reps:"8-12"},
+    {id:"lateralRaise", sets:3, reps:"12-15"},
+    {id:"ohTricepsExt", sets:3, reps:"10-15"},
+    {id:"hangingKneeRaise", sets:3, reps:"12-15"}
+  ]},
+  {name:"Day 2 — Pull + Legs", focus:"Back · Biceps · Legs", items:[
+    {id:"oneArmRow", sets:4, reps:"8-12"},
+    {id:"dbRdl", sets:3, reps:"8-12"},
+    {id:"bulgarianSplitSquat", sets:3, reps:"8-12"},
+    {id:"rearDeltFly", sets:3, reps:"12-15"},
+    {id:"bicepCurl", sets:3, reps:"10-12"},
+    {id:"hammerCurl", sets:2, reps:"10-12"},
+    {id:"plank", sets:3, reps:"45-60"}
+  ]},
+  {name:"Day 3 — Shoulders + Arms", focus:"Delts · Arms · Core", items:[
+    {id:"arnoldPress", sets:3, reps:"8-12"},
+    {id:"closeGripPress", sets:3, reps:"10-12"},
+    {id:"lateralRaise", sets:4, reps:"12-15"},
+    {id:"frontRaise", sets:2, reps:"12"},
+    {id:"hammerCurl", sets:3, reps:"10-12"},
+    {id:"ohTricepsExt", sets:3, reps:"10-12"},
+    {id:"proneYRaise", sets:2, reps:"12-15"},
+    {id:"russianTwist", sets:3, reps:"15"}
+  ]}
+];
+/* ============ STORAGE ============ */
+const LS_KEY = "wtg-logs-v1";
+function loadLogs(){ try{ const v = JSON.parse(localStorage.getItem(LS_KEY)); return Array.isArray(v)?v:[]; }catch(e){ return []; } }
+function saveLogs(){ localStorage.setItem(LS_KEY, JSON.stringify(logs)); }
+let logs = loadLogs();
+let session = null; // {dayIndex, startedAt, entries:{exId:[{w,r}]}}
+
+/* ============ HELPERS ============ */
+const app = document.getElementById("app");
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function unitLabel(ex){ return ex.unit==="seconds" ? "sec" : "reps" + (ex.unilateral==="side"?" per side":ex.unilateral==="leg"?" per leg":""); }
+function targetText(item){ const ex=EX[item.id]; return item.sets+" x "+item.reps+" "+unitLabel(ex); }
+function fmtDate(ts){ const d=new Date(ts); return d.toLocaleDateString(undefined,{weekday:"short",day:"numeric",month:"short"})+" "+d.toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"}); }
+function setTab(name){
+  document.getElementById("tab-program").classList.toggle("active", name==="program"||name==="log"||name==="guide");
+  document.getElementById("tab-history").classList.toggle("active", name==="history");
+  window.scrollTo(0,0);
+}
+
+/* ============ WEEKLY SUMMARY ============ */
+function weeklyStats(){
+  const weekAgo = Date.now() - 7*24*3600*1000;
+  let volume=0, tut=0, count=0;
+  for(const w of logs){
+    if(w.startedAt < weekAgo) continue;
+    count++;
+    for(const en of w.entries){
+      const ex = EX[en.exId]; if(!ex) continue;
+      for(const s of en.sets){
+        const v = parseFloat(s.r)||0; const wt = parseFloat(s.w)||0;
+        if(ex.unit==="seconds"){ tut += v; }
+        else { volume += wt * v * (ex.unilateral?2:1); }
+      }
+    }
+  }
+  return {volume:Math.round(volume), tut:Math.round(tut), count};
+}
+
+/* ============ VIEWS ============ */
+function renderHome(){
+  setTab("program");
+  const st = weeklyStats();
+  let h = '<div class="summary">'
+    + '<div class="stat"><div class="v">'+st.volume+' kg</div><div class="l">Volume · 7 days</div></div>'
+    + '<div class="stat"><div class="v">'+st.tut+'s</div><div class="l">Time under tension</div></div>'
+    + '<div class="stat"><div class="v">'+st.count+'</div><div class="l">Workouts · 7 days</div></div>'
+    + '</div>';
+  DAYS.forEach((d,di)=>{
+    h += '<div class="card"><h2>'+esc(d.name)+'</h2><p class="sub">'+esc(d.focus)+'</p>';
+    d.items.forEach(it=>{
+      const ex=EX[it.id];
+      h += '<div class="exrow" data-guide="'+it.id+'"><div class="icon">'+ex.icon+'</div>'
+        + '<div class="nm"><div class="t">'+esc(ex.name)+'</div><div class="s">'+targetText(it)+'</div></div>'
+        + '<div class="go">›</div></div>';
+    });
+    h += '<div style="margin-top:10px"><button class="btn" data-start="'+di+'">Start '+esc(d.name.split(" — ")[0])+'</button></div></div>';
+  });
+  app.innerHTML = h;
+  bindHome();
+}
+function bindHome(){
+  app.querySelectorAll("[data-guide]").forEach(el=>{ el.addEventListener("click", ()=>renderGuide(el.getAttribute("data-guide"), "home")); });
+  app.querySelectorAll("[data-start]").forEach(el=>{ el.addEventListener("click", e=>{ e.stopPropagation(); startDay(parseInt(el.getAttribute("data-start"),10)); }); });
+}
+
+function startDay(di){
+  const d = DAYS[di];
+  session = {dayIndex:di, startedAt:Date.now(), items:d.items, entries:{}};
+  d.items.forEach(it=>{
+    session.entries[it.id] = [];
+    for(let i=0;i<it.sets;i++) session.entries[it.id].push({w:"", r:""});
+  });
+  renderLog();
+}
+
+function renderLog(){
+  setTab("log");
+  const d = DAYS[session.dayIndex];
+  let h = '<span class="backlink" id="back-home">‹ Back (discards session)</span>';
+  h += '<div class="card"><h2>'+esc(d.name)+'</h2><p class="sub">Log each set as you go. Tap the guide button for form help.</p></div>';
+  d.items.forEach(it=>{
+    const ex = EX[it.id];
+    const sets = session.entries[it.id];
+    h += '<div class="logex" data-ex="'+it.id+'"><div class="head"><div class="icon">'+ex.icon+'</div>'
+      + '<div class="t">'+esc(ex.name)+'</div></div>'
+      + '<p class="target">Target: '+targetText(it)+'</p>'
+      + '<button class="guidebtn" data-guide="'+it.id+'">Form guide & video</button>'
+      + '<div class="sets">';
+    sets.forEach((s,si)=>{
+      h += '<div class="setrow"><div class="n">Set '+(si+1)+'</div>'
+        + '<input inputmode="decimal" placeholder="kg" value="'+esc(s.w)+'" data-w="'+it.id+':'+si+'" aria-label="Weight kg">'
+        + '<div class="u">kg</div>'
+        + '<input inputmode="numeric" placeholder="'+(ex.unit==="seconds"?"sec":"reps")+'" value="'+esc(s.r)+'" data-r="'+it.id+':'+si+'" aria-label="'+(ex.unit==="seconds"?"Seconds":"Reps")+'">'
+        + '<div class="u">'+(ex.unit==="seconds"?"sec":"reps")+'</div>'
+        + '<button class="x" data-delset="'+it.id+':'+si+'" aria-label="Remove set">×</button></div>';
+    });
+    h += '</div><button class="btn ghost small" data-addset="'+it.id+'">+ Add set</button></div>';
+  });
+  h += '<button class="btn" id="finish">Finish workout</button>';
+  app.innerHTML = h;
+  // wire inputs
+  app.querySelectorAll("[data-w]").forEach(inp=>{ inp.addEventListener("input", ()=>{ const [id,si]=inp.getAttribute("data-w").split(":"); session.entries[id][+si].w=inp.value; }); });
+  app.querySelectorAll("[data-r]").forEach(inp=>{ inp.addEventListener("input", ()=>{ const [id,si]=inp.getAttribute("data-r").split(":"); session.entries[id][+si].r=inp.value; }); });
+  app.querySelectorAll("[data-delset]").forEach(b=>{ b.addEventListener("click", ()=>{ const [id,si]=b.getAttribute("data-delset").split(":"); session.entries[id].splice(+si,1); renderLog(); }); });
+  app.querySelectorAll("[data-addset]").forEach(b=>{ b.addEventListener("click", ()=>{ session.entries[b.getAttribute("data-addset")].push({w:"",r:""}); renderLog(); }); });
+  app.querySelectorAll("[data-guide]").forEach(b=>{ b.addEventListener("click", ()=>renderGuide(b.getAttribute("data-guide"), "log")); });
+  document.getElementById("back-home").addEventListener("click", ()=>{ if(confirm("Discard this session?")){ session=null; renderHome(); } });
+  document.getElementById("finish").addEventListener("click", finishWorkout);
+}
+
+function finishWorkout(){
+  const d = DAYS[session.dayIndex];
+  const entries = [];
+  d.items.forEach(it=>{
+    const done = session.entries[it.id].filter(s=>String(s.r).trim()!==""||String(s.w).trim()!=="");
+    if(done.length) entries.push({exId:it.id, sets:done.map(s=>({w:String(s.w).trim(), r:String(s.r).trim()}))});
+  });
+  if(!entries.length){ alert("Log at least one set before finishing."); return; }
+  logs.unshift({id:"w"+Date.now(), startedAt:session.startedAt, dayName:d.name, entries});
+  saveLogs();
+  session = null;
+  renderHistory();
+}
+
+function renderGuide(exId, from){
+  setTab("guide");
+  const ex = EX[exId];
+  const v = ex.video;
+  const watchUrl = "https://www.youtube.com/watch?v="+v.id;
+  const embedUrl = "https://www.youtube-nocookie.com/embed/"+v.id+"?rel=0";
+  let h = '<span class="backlink" id="guide-back">‹ Back</span>';
+  h += '<div class="card"><h2>'+esc(ex.name)+'</h2>';
+  h += '<div class="video"><iframe src="'+embedUrl+'" title="'+esc(v.title)+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
+  h += '<p class="attr">Video: “'+esc(v.title)+'” — '+esc(v.channel)+'. <a href="'+watchUrl+'" target="_blank" rel="noopener">Watch on YouTube</a></p>';
+  h += '<div class="note">'+esc(ex.note)+'</div>';
+  h += '<h3>Setup</h3><ol class="setup">'+ex.setup.map(s=>'<li>'+esc(s)+'</li>').join("")+'</ol>';
+  h += '<p class="tempo">Tempo: '+esc(ex.tempo)+'</p>';
+  h += '<h3>Dos and don\'ts</h3><div class="cols"><div class="do"><h4>Do</h4><ul>'+ex.dos.map(s=>'<li>'+esc(s)+'</li>').join("")+'</ul></div>'
+     + '<div class="dont"><h4>Don\'t</h4><ul>'+ex.donts.map(s=>'<li>'+esc(s)+'</li>').join("")+'</ul></div></div>';
+  h += '<h3>Common mistakes</h3><ul class="list">'+ex.mistakes.map(s=>'<li>'+esc(s)+'</li>').join("")+'</ul>';
+  h += '<div class="tip"><strong>Tip:</strong> '+esc(ex.tip)+'</div>';
+  h += '</div>';
+  app.innerHTML = h;
+  document.getElementById("guide-back").addEventListener("click", ()=>{
+    if(from==="log" && session) renderLog();
+    else if(from==="history") renderHistory();
+    else renderHome();
+  });
+}
+
+function renderHistory(){
+  setTab("history");
+  let h = '<div class="card"><h2>Workout history</h2><p class="sub">'+logs.length+' session'+(logs.length===1?"":"s")+' logged. Stored only in this browser.</p></div>';
+  if(!logs.length){ h += '<div class="empty">No workouts logged yet.<br>Start a day from the Program tab.</div>'; }
+  logs.forEach(w=>{
+    h += '<div class="hist"><div class="hd"><div><div class="d">'+esc(w.dayName)+'</div><div class="w">'+fmtDate(w.startedAt)+'</div></div>'
+      + '<button class="btn danger small" data-delw="'+w.id+'">Delete</button></div>';
+    w.entries.forEach(en=>{
+      const ex = EX[en.exId]; if(!ex) return;
+      const parts = en.sets.map(s=>{
+        const wv = s.w!==""? s.w+" kg × " : "";
+        return wv + s.r + " " + unitLabel(ex);
+      });
+      h += '<div class="en"><strong>'+esc(ex.name)+':</strong> '+esc(parts.join(" · "))+'</div>';
+    });
+    h += '</div>';
+  });
+  app.innerHTML = h;
+  app.querySelectorAll("[data-delw]").forEach(b=>{ b.addEventListener("click", ()=>{
+    if(confirm("Delete this workout?")){ logs = logs.filter(w=>w.id!==b.getAttribute("data-delw")); saveLogs(); renderHistory(); }
+  }); });
+}
+
+/* ============ NAV ============ */
+document.getElementById("tab-program").addEventListener("click", ()=>{ renderHome(); });
+document.getElementById("tab-history").addEventListener("click", ()=>{ renderHistory(); });
+renderHome();
+</script>
+</body>
+</html>
